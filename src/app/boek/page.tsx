@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { services } from "@/lib/services";
+import { siteConfig } from "@/lib/config";
 import ScrollReveal from "@/components/ScrollReveal";
 import Image from "next/image";
 
@@ -137,9 +138,10 @@ function BookingEmbedContent() {
   const [calError, setCalError] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
+  const { calUsername, calEmbedOrigin, calJsUrl } = siteConfig.business;
   const calLink = selectedSlug
-    ? `els-vrints/${selectedSlug}`
-    : "els-vrints";
+    ? `${calUsername}/${selectedSlug}`
+    : calUsername;
 
   const namespace = selectedSlug || "default";
 
@@ -148,7 +150,7 @@ function BookingEmbedContent() {
     let isMounted = true;
     (async function () {
       try {
-        const cal = await getCalApi({ namespace, embedJsUrl: "https://app.cal.eu/embed/embed.js" });
+        const cal = await getCalApi({ namespace, embedJsUrl: calJsUrl });
         if (!isMounted) return;
         cal("ui", {
           hideEventTypeDetails: false,
@@ -167,7 +169,7 @@ function BookingEmbedContent() {
       }
     })();
     return () => { isMounted = false; };
-  }, [namespace, selectedSlug]);
+  }, [namespace, selectedSlug, calJsUrl]);
 
   if (!selectedSlug) {
     return (
@@ -289,7 +291,7 @@ function BookingEmbedContent() {
           <div className="bg-terracotta/5 border border-terracotta/20 rounded-[2rem] p-10">
             <h2 className="text-[24px] font-serif text-dark-earth mb-4">De agenda kon niet worden geladen</h2>
             <p className="text-clay mb-8">Onze excuses voor het ongemak. Je kunt ook direct via e-mail een afspraak aanvragen.</p>
-            <a href="mailto:els@blossom-massage.be" className="btn-primary inline-block">
+            <a href={`mailto:${siteConfig.business.email}`} className="btn-primary inline-block">
               Stuur een e-mail
             </a>
             <button
@@ -305,7 +307,8 @@ function BookingEmbedContent() {
           key={calLink}
           namespace={namespace}
           calLink={calLink}
-          calOrigin="https://app.cal.eu"
+          calOrigin={calEmbedOrigin}
+          embedJsUrl={calJsUrl}
           style={{ width: "100%", minHeight: "720px", height: "calc(100vh - 260px)", maxHeight: "900px", overflow: "auto" }}
           config={{
             layout: "month_view",

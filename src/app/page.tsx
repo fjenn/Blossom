@@ -305,12 +305,18 @@ export default function Home() {
                       <p className="text-[16px] md:text-[17px] text-clay leading-relaxed">{business.address}<br/>{business.city}</p>
                     </div>
                     <div>
-                      <p className="font-serif text-[22px] md:text-[24px] text-terracotta mb-3 md:mb-4">Email</p>
+                      <p className="font-serif text-[22px] md:text-[24px] text-terracotta mb-3 md:mb-4">Contact</p>
                       <a 
                         href={`mailto:${business.email}`} 
-                        className="text-[16px] md:text-[17px] text-clay leading-relaxed hover:text-terracotta transition-colors underline underline-offset-4 decoration-terracotta/30"
+                        className="block text-[16px] md:text-[17px] text-clay leading-relaxed hover:text-terracotta transition-colors underline underline-offset-4 decoration-terracotta/30"
                       >
                         {business.email}
+                      </a>
+                      <a
+                        href={`tel:${business.phoneTel}`}
+                        className="block text-[16px] md:text-[17px] text-clay leading-relaxed hover:text-terracotta transition-colors underline underline-offset-4 decoration-terracotta/30 mt-2"
+                      >
+                        {business.phone}
                       </a>
                     </div>
                   </div>
@@ -343,7 +349,7 @@ export default function Home() {
                      src="https://maps.google.com/maps?q=Van+Schoonbekestraat+20,+2018+Antwerpen&hl=nl&z=16&output=embed"
                      width="100%"
                      height="100%" 
-                     title="Locatie van Blossom in Antwerpen"
+                     title={`Locatie van ${business.name} in Antwerpen`}
                      style={{ border: 0 }} 
                      allowFullScreen={true} 
                      loading="lazy" 

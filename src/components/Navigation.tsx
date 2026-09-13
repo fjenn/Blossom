@@ -50,10 +50,10 @@ const Navigation = () => {
           className="flex items-center gap-3 group z-[110]"
           onClick={() => setIsMenuOpen(false)}
         >
-          <div className="relative w-8 h-8 transition-transform duration-500 group-hover:rotate-12">
+          <div className="relative w-7 h-7 md:w-8 md:h-8 transition-transform duration-500 group-hover:rotate-12 shrink-0">
             <Image src="/favicon.svg" alt={`${business.name} Logo`} fill className="object-contain" />
           </div>
-          <span className="font-serif text-[26px] text-dark-earth leading-none">
+          <span className="font-serif text-[18px] md:text-[22px] text-dark-earth leading-none whitespace-nowrap">
             {business.name}
           </span>
         </Link>

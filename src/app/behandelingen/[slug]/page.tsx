@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { services } from "@/lib/services";
+import { siteConfig } from "@/lib/config";
 import ServiceDetailClient from "./ServiceDetailClient";
 
 interface Props {
@@ -13,15 +14,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!service) {
     return {
-      title: "Behandeling niet gevonden | Blossom",
+      title: `Behandeling niet gevonden | ${siteConfig.business.name}`,
     };
   }
 
   return {
-    title: `${service.name} | Blossom Massagetherapie Antwerpen`,
+    title: `${service.name} | ${siteConfig.business.name}`,
     description: service.description,
     openGraph: {
-      title: `${service.name} | Blossom`,
+      title: `${service.name} | ${siteConfig.business.name}`,
       description: service.description,
       images: [typeof service.image === "string" ? service.image : service.image.src],
     },

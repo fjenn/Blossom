@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="relative w-8 h-8">
               <Image src="/favicon.svg" alt={`${business.name} Logo`} fill className="object-contain" />
             </div>
-            <h2 className="font-serif text-[32px] !text-plaster tracking-tight">{business.name}</h2>
+            <h2 className="font-serif text-[28px] md:text-[32px] !text-plaster tracking-tight leading-tight">{business.name}</h2>
           </div>
           <p className="max-w-[280px] opacity-80 text-[15px] leading-relaxed">
             Een plek voor diepe rust en verbinding in het hart van Antwerpen.
@@ -43,6 +43,7 @@ const Footer = () => {
             <div>
               <p className="opacity-60 mb-2">Contact:</p>
               <a href={`mailto:${business.email}`} className="hover:text-terracotta transition-colors">{business.email}</a>
+              <a href={`tel:${business.phoneTel}`} className="block hover:text-terracotta transition-colors">{business.phone}</a>
             </div>
             <div>
               <p className="opacity-60 mb-2">Beschikbaarheid:</p>

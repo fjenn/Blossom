@@ -1,13 +1,14 @@
 export const siteConfig = {
   business: {
-    name: "Blossom",
+    name: "Massages by Els",
     tagline: "Lichaamswerk dat diep doorwerkt.",
     owner: "Els Vrints",
-    email: "els@blossom-massage.be", // Fixed email (was els@zwenk.be in some places)
+    email: "els@zwenk.be",
     address: "Van Schoonbekestraat 20, bus D4",
     city: "2018 Antwerpen",
     country: "België",
-    phone: "",
+    phone: "0474 95 13 55",
+    phoneTel: "+32474951355",
     hours: [
       { day: "Maandag", morning: "9:00 – 12:00", afternoon: "14:00 – 17:00" },
       { day: "Dinsdag", morning: "9:00 – 12:00" },

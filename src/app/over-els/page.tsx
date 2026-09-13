@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import ArchImage from "@/components/ArchImage";
 import ScrollReveal from "@/components/ScrollReveal";
 import BookingCTA from "@/components/BookingCTA";
 import MoroccanPattern from "@/components/MoroccanPattern";
 import Image from "next/image";
 import elsMainImg from "../../../public/images/els/Els-main picture.jpg.avif";
+import { siteConfig } from "@/lib/config";
+
+export const metadata: Metadata = {
+  title: `Over Els — ${siteConfig.business.name}`,
+  description: `Maak kennis met ${siteConfig.business.owner}, massagetherapeut in Antwerpen.`,
+};
 
 export default function AboutPage() {
   return (

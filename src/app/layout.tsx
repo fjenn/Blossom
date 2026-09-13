@@ -51,7 +51,7 @@ export default function RootLayout({
     "image": "https://blossom-massage.be/images/els/Els-main%20picture.jpg.avif",
     "@id": "https://blossom-massage.be",
     "url": "https://blossom-massage.be",
-    ...(siteConfig.business.phone ? { "telephone": siteConfig.business.phone } : {}),
+    ...(siteConfig.business.phoneTel ? { "telephone": siteConfig.business.phoneTel } : {}),
     "address": {
       "@type": "PostalAddress",
       "streetAddress": siteConfig.business.address,

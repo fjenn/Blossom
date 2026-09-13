@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { services } from "@/lib/services";
+import { siteConfig } from "@/lib/config";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -13,11 +14,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = services.find((s) => s.slug === slug || s.options?.some(opt => opt.slug === slug));
 
   if (!service) {
-    return { title: "Behandeling niet gevonden | Blossom" };
+    return { title: `Behandeling niet gevonden | ${siteConfig.business.name}` };
   }
 
   return {
-    title: `Over ${service.name} | Blossom Massagetherapie Antwerpen`,
+    title: `Over ${service.name} | ${siteConfig.business.name}`,
     description: service.infoParagraphs[0].slice(0, 160),
   };
 }
