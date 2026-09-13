@@ -137,6 +137,7 @@ function BookingEmbedContent() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(initialSlug);
   const [calError, setCalError] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [awaitingPayment, setAwaitingPayment] = useState(false);
 
   const { calUsername, calEmbedOrigin, calJsUrl } = siteConfig.business;
   const calLink = selectedSlug
@@ -147,6 +148,8 @@ function BookingEmbedContent() {
 
   useEffect(() => {
     if (!selectedSlug) return;
+    setBookingConfirmed(false);
+    setAwaitingPayment(false);
     let isMounted = true;
     (async function () {
       try {
@@ -157,9 +160,27 @@ function BookingEmbedContent() {
           layout: "month_view",
         });
         cal("on", {
-          action: "bookingSuccessful",
+          action: "bookingSuccessfulV2",
+          callback: (event: { detail?: { data?: { paymentRequired?: boolean } } }) => {
+            if (!isMounted) return;
+            // Only swap to our success screen when Cal.com says payment is
+            // not required. Otherwise the embed must stay up for Stripe.
+            if (event.detail?.data?.paymentRequired === false) {
+              setBookingConfirmed(true);
+              return;
+            }
+            setAwaitingPayment(true);
+          },
+        });
+        cal("on", {
+          action: "__routeChanged",
           callback: () => {
-            if (isMounted) setBookingConfirmed(true);
+            if (!isMounted) return;
+            const iframe = document.querySelector<HTMLIFrameElement>("iframe[src*='cal.']");
+            const path = iframe?.src ? new URL(iframe.src).pathname : "";
+            if (/\/booking\/[^/]+/.test(path)) {
+              setBookingConfirmed(true);
+            }
           },
         });
         setCalError(false);
@@ -261,6 +282,8 @@ function BookingEmbedContent() {
         <button
           onClick={() => {
             setSelectedSlug(null);
+            setBookingConfirmed(false);
+            setAwaitingPayment(false);
             router.replace("/boek", { scroll: false });
           }}
           className="inline-flex items-center gap-2 text-clay hover:text-terracotta text-[14px] transition-all focus:outline-none focus:ring-2 focus:ring-terracotta/20 rounded-lg px-2 -ml-2 mb-8 cursor-pointer"
@@ -282,6 +305,11 @@ function BookingEmbedContent() {
             <p className="text-clay/70 text-[13px] mt-2">
               Aanbetaling van <strong className="text-dark-earth">€25</strong> bij boeking — restbedrag (€{remainingAmount}) betaal je ter plaatse
             </p>
+            {awaitingPayment && (
+              <p className="text-terracotta text-[14px] mt-4 font-medium">
+                Rond je aanbetaling van €25 af hieronder om de afspraak te bevestigen.
+              </p>
+            )}
           </div>
         )}
       </section>
