@@ -129,6 +129,11 @@ export default function Home() {
                       placeholder="blur"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-earth/20 via-transparent to-transparent" />
+                    {service.featured && (
+                      <span className="absolute top-4 left-4 bg-terracotta text-plaster text-[10px] font-medium uppercase tracking-[0.18em] px-3.5 py-1.5 rounded-full shadow-sm">
+                        Favoriet
+                      </span>
+                    )}
                   </div>
                   <div className="relative z-10 flex flex-col flex-1 p-8">
                     <div className="flex justify-between items-start mb-6">

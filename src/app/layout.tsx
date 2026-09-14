@@ -20,6 +20,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://blossom-massage.be"),
   title: `${siteConfig.business.name} — Massage in Antwerpen`,
   description: `Persoonlijke massagepraktijk van ${siteConfig.business.owner} in Antwerpen. Integratieve massage, Lomi Lomi, Crystal Healing en meer.`,
   openGraph: {
@@ -28,6 +29,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: "nl_BE",
     siteName: siteConfig.business.name,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.business.name} — Massage in Antwerpen`,
+    description: `Persoonlijke massagepraktijk van ${siteConfig.business.owner} in Antwerpen.`,
   },
 };
 

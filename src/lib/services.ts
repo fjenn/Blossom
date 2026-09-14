@@ -19,6 +19,7 @@ export interface Service {
   imageScale?: number;
   clothing?: string;
   benefits?: string[];
+  featured?: boolean;
   options?: { duration: string; price: number; slug: string }[];
 }
 
@@ -31,6 +32,7 @@ export const services: Service[] = [
     price: 75,
     image: integratieveImg,
     secondaryImage: integratieveImg,
+    featured: true,
     description: "Een harmonieuze combinatie van holistic pulsing, intuïtieve massage en polariteitsmassage.",
     fullDescription: "Deze behandeling is Els haar signature blend. Het is een harmonieuze combinatie van drie krachtige massagevormen: holistic pulsing, intuïtieve massage met olie en polariteitsmassage. De polariteitsmassage werkt door handen op twee plaatsen op het lichaam te leggen om energiebanen te verbinden en de natuurlijke stroom van energie te herstellen.",
     infoParagraphs: [

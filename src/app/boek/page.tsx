@@ -65,6 +65,11 @@ function ServiceSelector({ onSelect }: { onSelect: (slug: string) => void }) {
               >
                 <div className="relative w-full aspect-video rounded-[1rem] overflow-hidden mb-6 ring-1 ring-sandstone/20">
                   <Image src={service.image} alt={service.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" placeholder="blur" />
+                  {service.featured && (
+                    <span className="absolute top-3 left-3 bg-terracotta text-plaster text-[10px] font-medium uppercase tracking-[0.18em] px-3 py-1.5 rounded-full shadow-sm">
+                      Favoriet
+                    </span>
+                  )}
                 </div>
                 <div className="flex justify-between items-start gap-2 mb-2">
                    <h3 className="font-serif text-[20px] md:text-[22px] text-dark-earth leading-tight">{service.name}</h3>
