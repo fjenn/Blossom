@@ -19,8 +19,10 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const siteUrl = "https://massagesbyels.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://blossom-massage.be"),
+  metadataBase: new URL(siteUrl),
   title: `${siteConfig.business.name} — Massage in Antwerpen`,
   description: `Persoonlijke massagepraktijk van ${siteConfig.business.owner} in Antwerpen. Integratieve massage, Lomi Lomi, Crystal Healing en meer.`,
   openGraph: {
@@ -30,11 +32,21 @@ export const metadata: Metadata = {
     locale: "nl_BE",
     siteName: siteConfig.business.name,
     url: "/",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.business.name} — Massage in Antwerpen`,
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.business.name} — Massage in Antwerpen`,
     description: `Persoonlijke massagepraktijk van ${siteConfig.business.owner} in Antwerpen.`,
+    images: ["/og.jpg"],
   },
 };
 
@@ -55,9 +67,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": siteConfig.business.name,
-    "image": "https://blossom-massage.be/images/els/Els-main%20picture.jpg.avif",
-    "@id": "https://blossom-massage.be",
-    "url": "https://blossom-massage.be",
+    "image": "https://massagesbyels.com/og.jpg",
+    "@id": "https://massagesbyels.com",
+    "url": "https://massagesbyels.com",
     ...(siteConfig.business.phoneTel ? { "telephone": siteConfig.business.phoneTel } : {}),
     "address": {
       "@type": "PostalAddress",
