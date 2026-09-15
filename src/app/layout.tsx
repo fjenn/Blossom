@@ -25,6 +25,28 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: `${siteConfig.business.name} — Massage in Antwerpen`,
   description: `Persoonlijke massagepraktijk van ${siteConfig.business.owner} in Antwerpen. Integratieve massage, Lomi Lomi, Crystal Healing en meer.`,
+  keywords: [
+    'massage Antwerpen',
+    'massagetherapeut Antwerpen',
+    'integratieve massage',
+    'lomi lomi massage',
+    'crystal healing',
+    'holistic pulsing',
+    'massage praktijk',
+    'ontspanningsmassage',
+    'therapeutische massage',
+    'Els Vrints',
+    'massage België',
+    'wellness Antwerpen',
+  ],
+  authors: [{ name: siteConfig.business.owner }],
+  creator: siteConfig.business.owner,
+  publisher: siteConfig.business.name,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: `${siteConfig.business.name} — Massage in Antwerpen`,
     description: `Persoonlijke massagepraktijk van ${siteConfig.business.owner} in Antwerpen.`,
@@ -47,6 +69,20 @@ export const metadata: Metadata = {
     title: `${siteConfig.business.name} — Massage in Antwerpen`,
     description: `Persoonlijke massagepraktijk van ${siteConfig.business.owner} in Antwerpen.`,
     images: ["/og.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'REPLACE_WITH_YOUR_GOOGLE_VERIFICATION_CODE',
   },
 };
 
