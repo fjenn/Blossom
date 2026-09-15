@@ -24,8 +24,48 @@ export default function ServiceDetailClient({
   
   const bookingLink = `/boek?type=${selectedOption.slug}`;
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": baseService.name,
+    "description": baseService.fullDescription,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Massages by Els",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Van Schoonbekestraat 20, bus D4",
+        "addressLocality": "Antwerpen",
+        "postalCode": "2018",
+        "addressCountry": "BE"
+      }
+    },
+    "offers": baseService.options ? baseService.options.map(opt => ({
+      "@type": "Offer",
+      "price": opt.price,
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": `https://massagesbyels.com/behandelingen/${opt.slug}`
+    })) : [{
+      "@type": "Offer",
+      "price": baseService.price,
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": `https://massagesbyels.com/behandelingen/${baseService.slug}`
+    }],
+    "areaServed": {
+      "@type": "City",
+      "name": "Antwerpen"
+    }
+  };
+
   return (
-    <div className="pt-[72px] overflow-x-hidden w-full">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="pt-[72px] overflow-x-hidden w-full">
       {/* Service Header & Detail */}
       <section className="relative px-6 md:px-12 pt-2 md:pt-20 pb-20 md:pb-32 max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 md:gap-16 items-start">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-terracotta/5 rounded-full blur-3xl -z-10 pointer-events-none" />
@@ -179,5 +219,6 @@ export default function ServiceDetailClient({
         imageVariant="circle"
       />
     </div>
+    </>
   );
 }

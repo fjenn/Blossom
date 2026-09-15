@@ -9,7 +9,16 @@ import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: `Over Els — ${siteConfig.business.name}`,
-  description: `Maak kennis met ${siteConfig.business.owner}, massagetherapeut in Antwerpen.`,
+  description: `Maak kennis met ${siteConfig.business.owner}, ervaren massagetherapeut in Antwerpen. Gespecialiseerd in integratieve massage, holistic pulsing, lomi lomi en crystal healing.`,
+  openGraph: {
+    title: `Over ${siteConfig.business.owner} — ${siteConfig.business.name}`,
+    description: `Maak kennis met ${siteConfig.business.owner}, ervaren massagetherapeut in Antwerpen.`,
+    type: "profile",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function AboutPage() {
